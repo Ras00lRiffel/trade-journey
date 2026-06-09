@@ -1,0 +1,13 @@
+# Backend
+tradejourney-api/node_modules
+tradejourney-api/dist
+tradejourney-api/.env
+
+# Frontend
+tradejourney-web/node_modules
+tradejourney-web/dist
+tradejourney-web/.env
+
+# General
+.vscode
+.DS_Store
