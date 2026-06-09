@@ -25,4 +25,14 @@ router.get(
   tradeController.getTrade
 );
 
+router.put(
+  "/:uuid",
+  tradeController.updateTrade
+);
+
+router.delete(
+  "/:uuid",
+  tradeController.deleteTrade
+);
+
 export default router;

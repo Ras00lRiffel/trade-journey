@@ -105,3 +105,92 @@ export const getTrade = async (
   }
 
 };
+
+export const updateTrade = async (
+  req: AuthRequest,
+  res: Response
+): Promise<void> => {
+
+  try {
+    const uuid = Array.isArray(req.params.uuid)
+      ? req.params.uuid[0]
+      : req.params.uuid;
+
+    const affectedRows =
+      await tradeService.updateTrade(
+        req.user!.userId,
+        uuid,
+        req.body
+      );
+
+    if (!affectedRows) {
+
+      res.status(404).json({
+        success: false,
+        message: "Trade not found"
+      });
+
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Trade updated"
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to update trade"
+    });
+
+  }
+
+};
+
+export const deleteTrade = async (
+  req: AuthRequest,
+  res: Response
+): Promise<void> => {
+
+  try {
+    const uuid = Array.isArray(req.params.uuid)
+      ? req.params.uuid[0]
+      : req.params.uuid;
+
+    const affectedRows =
+      await tradeService.deleteTrade(
+        req.user!.userId,
+        uuid
+      );
+
+    if (!affectedRows) {
+
+      res.status(404).json({
+        success: false,
+        message: "Trade not found"
+      });
+
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Trade deleted"
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to delete trade"
+    });
+
+  }
+
+};
